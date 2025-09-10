@@ -125,7 +125,7 @@ export default function AboutPage() {
                 memnuniyetini ön planda tuttuk.
               </p>
               <p>
-                Bugün, Çelenk Diyarı olarak, Türkiye'nin önde gelen çelenk üreticilerinden 
+                Bugün, Çelenk Diyarı olarak, Türkiye&apos;nin önde gelen çelenk üreticilerinden 
                 biri olmanın gururunu yaşıyoruz. Gelecekte de aynı kalite ve hizmet 
                 anlayışıyla yolumuza devam edeceğiz.
               </p>

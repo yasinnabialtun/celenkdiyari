@@ -231,7 +231,7 @@ export default function ContactPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Konumumuz</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              İstanbul Kadıköy'de bulunan mağazamızı ziyaret edebilir, 
+              İstanbul Kadıköy&apos;de bulunan mağazamızı ziyaret edebilir, 
               çelenklerimizi yakından inceleyebilirsiniz.
             </p>
           </div>

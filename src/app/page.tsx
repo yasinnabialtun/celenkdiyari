@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ShoppingCart, Star, Truck, Shield, Heart, Search } from "lucide-react";
+import { ShoppingCart, Star, Truck, Shield, Heart } from "lucide-react";
 
 export default function Home() {
   return (

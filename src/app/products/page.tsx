@@ -25,7 +25,7 @@ export default function ProductsPage() {
   ];
 
   const filteredProducts = useMemo(() => {
-    let filtered = products.filter(product => {
+    const filtered = products.filter(product => {
       const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            product.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -41,22 +41,16 @@ export default function ProductsPage() {
     // Sort products
     switch (sortBy) {
       case 'price-low':
-        filtered.sort((a, b) => a.price - b.price);
-        break;
+        return [...filtered].sort((a, b) => a.price - b.price);
       case 'price-high':
-        filtered.sort((a, b) => b.price - a.price);
-        break;
+        return [...filtered].sort((a, b) => b.price - a.price);
       case 'rating':
-        filtered.sort((a, b) => b.rating - a.rating);
-        break;
+        return [...filtered].sort((a, b) => b.rating - a.rating);
       case 'newest':
-        filtered.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
-        break;
+        return [...filtered].sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
       default:
-        filtered.sort((a, b) => a.name.localeCompare(b.name, 'tr'));
+        return [...filtered].sort((a, b) => a.name.localeCompare(b.name, 'tr'));
     }
-
-    return filtered;
   }, [searchTerm, selectedCategory, sortBy, priceRange]);
 
   return (

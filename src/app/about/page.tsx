@@ -1,5 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heart, Users, Award, Leaf } from "lucide-react";
+import Link from "next/link";
 
 export default function AboutPage() {
   return (
@@ -199,18 +200,18 @@ export default function AboutPage() {
             Size en uygun çözümü birlikte bulalım.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <Link
               href="/contact"
               className="bg-white text-green-600 hover:bg-green-50 text-lg px-8 py-6 rounded-lg font-medium transition-colors"
             >
               İletişime Geç
-            </a>
-            <a
+            </Link>
+            <Link
               href="/products"
               className="border-2 border-white text-white hover:bg-white hover:text-green-600 text-lg px-8 py-6 rounded-lg font-medium transition-colors"
             >
               Ürünleri Görüntüle
-            </a>
+            </Link>
           </div>
         </div>
       </section>

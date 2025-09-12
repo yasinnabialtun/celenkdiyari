@@ -3,35 +3,51 @@ import { Product, ProductCategory } from '@/types/product';
 export const categories: ProductCategory[] = [
   {
     id: '1',
-    name: 'Doğal Çelenkler',
-    description: 'Taze ve doğal malzemelerle hazırlanmış çelenkler',
-    image: '/images/categories/natural-wreaths.jpg',
-    slug: 'dogal-celenkler',
+    name: 'Açılış & Tören',
+    description: 'Kutlama günleri için şık çelenkler',
+    image: '/images/categories/açılıştören.jpg',
+    slug: 'acilis-toren',
     productCount: 12
   },
   {
     id: '2',
-    name: 'Özel Tasarım Çelenkler',
-    description: 'Özel günler için tasarlanmış lüks çelenkler',
-    image: '/images/categories/designer-wreaths.jpg',
-    slug: 'ozel-tasarim-celenkler',
-    productCount: 8
+    name: 'Cenaze Çelenkleri',
+    description: 'Saygı ve sevgi dolu anma çelenkleri',
+    image: '/images/categories/cenaze.jpg',
+    slug: 'cenaze-celenkleri',
+    productCount: 10
   },
   {
     id: '3',
-    name: 'Mevsimsel Çelenkler',
-    description: 'Mevsimlere özel hazırlanmış çelenkler',
-    image: '/images/categories/seasonal-wreaths.jpg',
-    slug: 'mevsimsel-celenkler',
-    productCount: 15
+    name: 'Ferforjeler',
+    description: 'Metal işçiliği ile hazırlanmış çelenkler',
+    image: '/images/categories/ferforje.png',
+    slug: 'ferforjeler',
+    productCount: 8
   },
   {
     id: '4',
-    name: 'Düğün Çelenkleri',
-    description: 'Düğün ve nikah törenleri için özel çelenkler',
-    image: '/images/categories/wedding-wreaths.jpg',
-    slug: 'dugun-celenkleri',
+    name: 'Fuar & Stand',
+    description: 'Fuar ve stand etkinlikleri için çelenkler',
+    image: '/images/categories/fuar stand.jpg',
+    slug: 'fuar-stand',
     productCount: 6
+  },
+  {
+    id: '5',
+    name: 'Ofis & Saksı Bitkileri',
+    description: 'Ofis ve ev için saksı bitkileri',
+    image: '/images/categories/ofis bitki.jpg',
+    slug: 'ofis-saksi-bitkileri',
+    productCount: 12
+  },
+  {
+    id: '6',
+    name: 'Söz & Nişan',
+    description: 'Aşk dolu anlar için romantik çelenkler',
+    image: '/images/categories/söznişan.jpg',
+    slug: 'soz-nisan',
+    productCount: 8
   }
 ];
 
@@ -47,7 +63,7 @@ export const products: Product[] = [
       '/images/products/lavender-wreath-2.jpg',
       '/images/products/lavender-wreath-3.jpg'
     ],
-    category: 'Doğal Çelenkler',
+    category: 'Açılış & Tören',
     tags: ['lavanta', 'doğal', 'kokulu', 'huzur'],
     inStock: true,
     rating: 4.8,
@@ -84,7 +100,7 @@ export const products: Product[] = [
       '/images/products/rose-wreath-2.jpg',
       '/images/products/rose-wreath-3.jpg'
     ],
-    category: 'Özel Tasarım Çelenkler',
+    category: 'Söz & Nişan',
     tags: ['gül', 'lüks', 'özel günler', 'premium'],
     inStock: true,
     rating: 4.9,
@@ -120,7 +136,7 @@ export const products: Product[] = [
       '/images/products/autumn-wreath-2.jpg',
       '/images/products/autumn-wreath-3.jpg'
     ],
-    category: 'Mevsimsel Çelenkler',
+    category: 'Ferforjeler',
     tags: ['sonbahar', 'mevsim', 'doğal', 'renkli'],
     inStock: true,
     rating: 4.7,
@@ -156,7 +172,7 @@ export const products: Product[] = [
       '/images/products/wedding-wreath-2.jpg',
       '/images/products/wedding-wreath-3.jpg'
     ],
-    category: 'Düğün Çelenkleri',
+    category: 'Cenaze Çelenkleri',
     tags: ['düğün', 'beyaz', 'zarif', 'özel'],
     inStock: true,
     rating: 5.0,
@@ -192,7 +208,7 @@ export const products: Product[] = [
       '/images/products/winter-wreath-2.jpg',
       '/images/products/winter-wreath-3.jpg'
     ],
-    category: 'Mevsimsel Çelenkler',
+    category: 'Fuar & Stand',
     tags: ['kış', 'çam', 'kırmızı', 'noel'],
     inStock: true,
     rating: 4.6,
@@ -228,7 +244,7 @@ export const products: Product[] = [
       '/images/products/spring-wreath-2.jpg',
       '/images/products/spring-wreath-3.jpg'
     ],
-    category: 'Mevsimsel Çelenkler',
+    category: 'Ofis & Saksı Bitkileri',
     tags: ['bahar', 'çiçek', 'renkli', 'neşeli'],
     inStock: true,
     rating: 4.8,

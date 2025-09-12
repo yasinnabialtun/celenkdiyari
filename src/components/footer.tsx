@@ -46,11 +46,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/categories" className="text-gray-300 hover:text-green-400 transition-colors">
-                  Kategoriler
-                </Link>
-              </li>
-              <li>
                 <Link href="/about" className="text-gray-300 hover:text-green-400 transition-colors">
                   Hakkımızda
                 </Link>
@@ -58,6 +53,16 @@ export default function Footer() {
               <li>
                 <Link href="/contact" className="text-gray-300 hover:text-green-400 transition-colors">
                   İletişim
+                </Link>
+              </li>
+              <li>
+                <Link href="/cart" className="text-gray-300 hover:text-green-400 transition-colors">
+                  Sepetim
+                </Link>
+              </li>
+              <li>
+                <Link href="/favorites" className="text-gray-300 hover:text-green-400 transition-colors">
+                  Favorilerim
                 </Link>
               </li>
             </ul>
@@ -68,23 +73,33 @@ export default function Footer() {
             <h3 className="text-lg font-semibold">Kategoriler</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/categories/wedding" className="text-gray-300 hover:text-green-400 transition-colors">
-                  Düğün Çelenkleri
+                <Link href="/#products" className="text-gray-300 hover:text-green-400 transition-colors">
+                  Açılış & Tören
                 </Link>
               </li>
               <li>
-                <Link href="/categories/funeral" className="text-gray-300 hover:text-green-400 transition-colors">
+                <Link href="/#products" className="text-gray-300 hover:text-green-400 transition-colors">
                   Cenaze Çelenkleri
                 </Link>
               </li>
               <li>
-                <Link href="/categories/celebration" className="text-gray-300 hover:text-green-400 transition-colors">
-                  Kutlama Çelenkleri
+                <Link href="/#products" className="text-gray-300 hover:text-green-400 transition-colors">
+                  Ferforjeler
                 </Link>
               </li>
               <li>
-                <Link href="/categories/custom" className="text-gray-300 hover:text-green-400 transition-colors">
-                  Özel Tasarım
+                <Link href="/#products" className="text-gray-300 hover:text-green-400 transition-colors">
+                  Fuar & Stand
+                </Link>
+              </li>
+              <li>
+                <Link href="/#products" className="text-gray-300 hover:text-green-400 transition-colors">
+                  Ofis & Saksı Bitkileri
+                </Link>
+              </li>
+              <li>
+                <Link href="/#products" className="text-gray-300 hover:text-green-400 transition-colors">
+                  Söz & Nişan
                 </Link>
               </li>
             </ul>
@@ -116,7 +131,7 @@ export default function Footer() {
             <div className="flex items-center space-x-2 text-gray-400">
               <span>© 2024 Çelenk Diyarı. Tüm hakları saklıdır.</span>
             </div>
-            <div className="flex items-center space-x-6">
+            <div className="flex flex-wrap items-center gap-4">
               <Link href="/privacy" className="text-gray-400 hover:text-green-400 transition-colors text-sm">
                 Gizlilik Politikası
               </Link>
@@ -125,6 +140,15 @@ export default function Footer() {
               </Link>
               <Link href="/cookies" className="text-gray-400 hover:text-green-400 transition-colors text-sm">
                 Çerez Politikası
+              </Link>
+              <Link href="/about" className="text-gray-400 hover:text-green-400 transition-colors text-sm">
+                Hakkımızda
+              </Link>
+              <Link href="/contact" className="text-gray-400 hover:text-green-400 transition-colors text-sm">
+                İletişim
+              </Link>
+              <Link href="/admin" className="text-gray-400 hover:text-green-400 transition-colors text-sm">
+                Admin Panel
               </Link>
             </div>
           </div>

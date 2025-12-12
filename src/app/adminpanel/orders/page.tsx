@@ -20,8 +20,7 @@ import {
   CreditCard,
   Filter,
   MapPin,
-  FileText,
-  X
+  FileText
 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -75,6 +74,20 @@ interface Order {
     failedReasonMsg?: string;
     processedAt?: string;
   };
+  recipient?: {
+    deliveryAddress?: string;
+    deliveryLocation?: string;
+    firstName?: string;
+    lastName?: string;
+  };
+  deliveryAddress?: string | {
+    street?: string;
+    city?: string;
+    district?: string;
+    postalCode?: string;
+    country?: string;
+  };
+  wreathText?: string;
 }
 
 export default function OrdersPage() {
@@ -421,8 +434,8 @@ export default function OrdersPage() {
                           {(() => {
                             // Önce customer.address'i kontrol et, sonra recipient.deliveryAddress, sonra diğer olası yerler
                             const addr = selectedOrder.customer?.address || 
-                                        (selectedOrder as any).recipient?.deliveryAddress ||
-                                        (selectedOrder as any).deliveryAddress || 
+                                        selectedOrder.recipient?.deliveryAddress ||
+                                        selectedOrder.deliveryAddress || 
                                         selectedOrder.customer?.deliveryAddress;
                             
                             if (!addr) return '-';
@@ -461,7 +474,7 @@ export default function OrdersPage() {
                     <div className="flex items-start space-x-3">
                       <FileText className="h-5 w-5 text-gray-500 mt-0.5" />
                       <div className="flex-1">
-                        <p className="text-gray-900 font-medium">{(selectedOrder as any).wreathText || '-'}</p>
+                        <p className="text-gray-900 font-medium">{selectedOrder.wreathText || '-'}</p>
                         <p className="text-sm text-gray-500">Çelenk Yazısı</p>
                       </div>
                     </div>

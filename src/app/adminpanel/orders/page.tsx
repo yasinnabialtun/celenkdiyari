@@ -18,7 +18,10 @@ import {
   Mail,
   Calendar,
   CreditCard,
-  Filter
+  Filter,
+  MapPin,
+  FileText,
+  X
 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -381,41 +384,94 @@ export default function OrdersPage() {
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Customer Information */}
+                {/* Gönderici Bilgileri */}
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <User className="h-5 w-5 mr-2" />
-                      Müşteri Bilgileri
+                      Gönderici Bilgileri
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-3">
-                    <div>
-                      <label className="text-sm font-medium text-gray-500">Ad Soyad</label>
-                      <p className="text-gray-900">{selectedOrder.customer.firstName} {selectedOrder.customer.lastName}</p>
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-gray-500">E-posta</label>
-                      <p className="text-gray-900">{selectedOrder.customer.email}</p>
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-gray-500">Telefon</label>
-                      <p className="text-gray-900">{selectedOrder.customer.phone}</p>
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-gray-500">Adres</label>
-                      <p className="text-gray-900">
-                        {selectedOrder.customer.address.street}<br />
-                        {selectedOrder.customer.address.district}, {selectedOrder.customer.address.city}<br />
-                        {selectedOrder.customer.address.postalCode} {selectedOrder.customer.address.country}
-                      </p>
-                    </div>
-                    {selectedOrder.customer.notes && (
-                      <div>
-                        <label className="text-sm font-medium text-gray-500">Notlar</label>
-                        <p className="text-gray-900">{selectedOrder.customer.notes}</p>
+                  <CardContent className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <User className="h-5 w-5 text-gray-500 mt-0.5" />
+                      <div className="flex-1">
+                        <p className="text-gray-900 font-medium">{selectedOrder.customer.firstName} {selectedOrder.customer.lastName}</p>
+                        <p className="text-sm text-gray-500">Ad Soyad</p>
                       </div>
-                    )}
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <Mail className="h-5 w-5 text-gray-500 mt-0.5" />
+                      <div className="flex-1">
+                        <p className="text-gray-900 font-medium">{selectedOrder.customer.email || '-'}</p>
+                        <p className="text-sm text-gray-500">E-posta</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <Phone className="h-5 w-5 text-gray-500 mt-0.5" />
+                      <div className="flex-1">
+                        <p className="text-gray-900 font-medium">{selectedOrder.customer.phone || '-'}</p>
+                        <p className="text-sm text-gray-500">Telefon</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <MapPin className="h-5 w-5 text-gray-500 mt-0.5" />
+                      <div className="flex-1">
+                        <p className="text-gray-900 font-medium whitespace-pre-line">
+                          {(() => {
+                            // Önce customer.address'i kontrol et, sonra recipient.deliveryAddress, sonra diğer olası yerler
+                            const addr = selectedOrder.customer?.address || 
+                                        (selectedOrder as any).recipient?.deliveryAddress ||
+                                        (selectedOrder as any).deliveryAddress || 
+                                        selectedOrder.customer?.deliveryAddress;
+                            
+                            if (!addr) return '-';
+                            
+                            // Eğer string ise direkt göster
+                            if (typeof addr === 'string') {
+                              return addr.trim() || '-';
+                            }
+                            
+                            // Obje ise parçalara ayır
+                            const street = addr.street?.trim() || '';
+                            const district = addr.district?.trim() || '';
+                            const city = addr.city?.trim() || '';
+                            const postalCode = addr.postalCode?.trim() || '';
+                            const country = addr.country?.trim() || '';
+                            
+                            if (!street && !district && !city && !postalCode && !country) {
+                              return '-';
+                            }
+                            
+                            const parts = [];
+                            if (street) parts.push(street);
+                            if (district || city) {
+                              parts.push([district, city].filter(Boolean).join(', '));
+                            }
+                            if (postalCode || country) {
+                              parts.push([postalCode, country].filter(Boolean).join(' '));
+                            }
+                            
+                            return parts.length > 0 ? parts.join('\n') : '-';
+                          })()}
+                        </p>
+                        <p className="text-sm text-gray-500">Adres</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <FileText className="h-5 w-5 text-gray-500 mt-0.5" />
+                      <div className="flex-1">
+                        <p className="text-gray-900 font-medium">{(selectedOrder as any).wreathText || '-'}</p>
+                        <p className="text-sm text-gray-500">Çelenk Yazısı</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <FileText className="h-5 w-5 text-gray-500 mt-0.5" />
+                      <div className="flex-1">
+                        <p className="text-gray-900 font-medium">{selectedOrder.customer.notes || '-'}</p>
+                        <p className="text-sm text-gray-500">Ek Bilgi</p>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
 

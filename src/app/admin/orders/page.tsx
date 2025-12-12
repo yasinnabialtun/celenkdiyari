@@ -429,8 +429,7 @@ export default function OrdersPage() {
                             // Önce customer.address'i kontrol et, sonra recipient.deliveryAddress, sonra diğer olası yerler
                             const addr = selectedOrder.customer?.address || 
                                         selectedOrder.recipient?.deliveryAddress ||
-                                        selectedOrder.deliveryAddress || 
-                                        selectedOrder.customer?.deliveryAddress;
+                                        selectedOrder.deliveryAddress;
                             
                             if (!addr) return '-';
                             

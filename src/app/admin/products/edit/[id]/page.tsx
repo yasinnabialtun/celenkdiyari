@@ -1,5 +1,7 @@
 'use client';
 
+export const runtime = 'nodejs';
+
 import { useState, useEffect } from 'react';
 import ProductForm from '@/components/admin/ProductForm';
 import { Button } from '@/components/ui/button';

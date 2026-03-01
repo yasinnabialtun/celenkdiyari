@@ -1,3 +1,5 @@
+export const runtime = 'nodejs';
+
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, getDocs, query, orderBy, limit, doc, getDoc, updateDoc, where, deleteDoc } from 'firebase/firestore';

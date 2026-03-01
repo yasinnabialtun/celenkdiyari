@@ -1,3 +1,5 @@
+export const runtime = 'nodejs';
+
 import { NextRequest } from 'next/server';
 import { getPayTRConfig, verifyPayTRCallback, PayTRCallbackData, PAYTR_STATUS } from '@/lib/paytr';
 import { db } from '@/lib/firebase';

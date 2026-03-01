@@ -1,4 +1,4 @@
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getPayTRConfig, createPayTRPayment, generatePayTRToken, PayTRPaymentRequest } from '@/lib/paytr';

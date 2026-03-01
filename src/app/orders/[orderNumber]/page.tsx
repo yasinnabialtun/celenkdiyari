@@ -1,15 +1,13 @@
 'use client';
 
-export const runtime = 'edge';
-
 import { useState, useEffect, Suspense } from 'react';
 import { useParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { 
-  Package, 
-  CheckCircle, 
+import {
+  Package,
+  CheckCircle,
   Download,
   ArrowLeft,
   MapPin,
@@ -71,12 +69,12 @@ function OrderTrackingContent() {
       try {
         setIsLoading(true);
         setError('');
-        
+
         const response = await fetch(`/api/orders?orderNumber=${encodeURIComponent(orderNumber)}`);
         if (response.ok) {
           const data = await response.json();
           const foundOrder = data.orders?.[0] as Order | undefined;
-          
+
           if (foundOrder) {
             setOrder(foundOrder);
           } else {
@@ -132,7 +130,7 @@ function OrderTrackingContent() {
 
   const handleDownloadInvoice = async () => {
     if (!order) return;
-    
+
     try {
       const response = await fetch(`/api/orders/${order.id}/invoice`);
       if (response.ok) {
@@ -172,7 +170,7 @@ function OrderTrackingContent() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <Package className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-          <h1 
+          <h1
             className="text-2xl font-bold text-gray-900 mb-2"
             style={{
               fontFeatureSettings: '"kern" 1, "liga" 1',
@@ -219,7 +217,7 @@ function OrderTrackingContent() {
           </Link>
           <div className="flex items-center justify-between">
             <div>
-              <h1 
+              <h1
                 className="text-3xl font-bold text-gray-900"
                 style={{
                   fontFeatureSettings: '"kern" 1, "liga" 1',
@@ -376,18 +374,18 @@ function OrderTrackingContent() {
               <span className="text-gray-600">Ödeme Yöntemi:</span>
               <span>
                 {order.paymentMethod === 'cash' ? 'Kapıda Ödeme' :
-                 order.paymentMethod === 'credit_card' ? 'Kredi Kartı' :
-                 order.paymentMethod === 'bank_transfer' ? 'Havale/EFT' :
-                 order.paymentMethod}
+                  order.paymentMethod === 'credit_card' ? 'Kredi Kartı' :
+                    order.paymentMethod === 'bank_transfer' ? 'Havale/EFT' :
+                      order.paymentMethod}
               </span>
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-gray-600">Teslimat Yöntemi:</span>
               <span>
                 {order.shippingMethod === 'standard' ? 'Standart Teslimat' :
-                 order.shippingMethod === 'express' ? 'Hızlı Teslimat' :
-                 order.shippingMethod === 'pickup' ? 'Mağazadan Teslim' :
-                 order.shippingMethod}
+                  order.shippingMethod === 'express' ? 'Hızlı Teslimat' :
+                    order.shippingMethod === 'pickup' ? 'Mağazadan Teslim' :
+                      order.shippingMethod}
               </span>
             </div>
             {order.notes && (

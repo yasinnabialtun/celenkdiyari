@@ -1,4 +1,4 @@
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/firebase';
@@ -40,24 +40,24 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    
+
     // Get order from Firebase
     const orderRef = doc(db, 'orders', id);
     const orderSnap = await getDoc(orderRef);
-    
+
     if (!orderSnap.exists()) {
       return NextResponse.json({ error: 'Order not found' }, { status: 404 });
     }
-    
+
     const order: InvoiceOrder = {
       id: orderSnap.id,
       ...orderSnap.data()
     };
-    
+
     // Generate PDF invoice
     // Using a simple HTML to PDF approach
     const invoiceHTML = generateInvoiceHTML(order);
-    
+
     // For production, you might want to use a library like puppeteer or @react-pdf/renderer
     // For now, we'll return HTML that can be printed
     return new NextResponse(invoiceHTML, {
@@ -66,7 +66,7 @@ export async function GET(
         'Content-Disposition': `inline; filename="Fatura-${order.orderNumber || 'unknown'}.html"`,
       },
     });
-    
+
   } catch (error) {
     console.error('Error generating invoice:', error);
     return NextResponse.json({
@@ -80,19 +80,19 @@ function generateInvoiceHTML(order: InvoiceOrder): string {
   const customerName = order.customer?.firstName && order.customer?.lastName
     ? `${order.customer.firstName} ${order.customer.lastName}`
     : order.customer?.name || 'Müşteri';
-  
+
   const address = typeof order.customer?.address === 'string'
     ? order.customer.address
     : order.customer?.address
       ? `${order.customer.address.street || ''}, ${order.customer.address.district || ''}, ${order.customer.address.city || ''}`
       : '';
-  
+
   const orderDate = new Date(order.createdAt).toLocaleDateString('tr-TR', {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
   });
-  
+
   return `
 <!DOCTYPE html>
 <html lang="tr">
@@ -312,39 +312,39 @@ function generateInvoiceHTML(order: InvoiceOrder): string {
           <div class="info-label">Ödeme Yöntemi</div>
           <div class="info-value">
             ${order.paymentMethod === 'cash' ? 'Kapıda Ödeme' :
-              order.paymentMethod === 'credit_card' ? 'Kredi Kartı' :
-              order.paymentMethod === 'bank_transfer' ? 'Havale/EFT' :
-              order.paymentMethod || '-'}
+      order.paymentMethod === 'credit_card' ? 'Kredi Kartı' :
+        order.paymentMethod === 'bank_transfer' ? 'Havale/EFT' :
+          order.paymentMethod || '-'}
           </div>
         </div>
         <div class="info-item">
           <div class="info-label">Ödeme Durumu</div>
           <div class="info-value">
             ${order.paymentStatus === 'paid' ? 'Ödendi' :
-              order.paymentStatus === 'pending' ? 'Beklemede' :
-              order.paymentStatus === 'failed' ? 'Başarısız' :
-              order.paymentStatus || '-'}
+      order.paymentStatus === 'pending' ? 'Beklemede' :
+        order.paymentStatus === 'failed' ? 'Başarısız' :
+          order.paymentStatus || '-'}
           </div>
         </div>
         <div class="info-item">
           <div class="info-label">Teslimat Yöntemi</div>
           <div class="info-value">
             ${order.shippingMethod === 'standard' ? 'Standart Teslimat' :
-              order.shippingMethod === 'express' ? 'Hızlı Teslimat' :
-              order.shippingMethod === 'pickup' ? 'Mağazadan Teslim' :
-              order.shippingMethod || '-'}
+      order.shippingMethod === 'express' ? 'Hızlı Teslimat' :
+        order.shippingMethod === 'pickup' ? 'Mağazadan Teslim' :
+          order.shippingMethod || '-'}
           </div>
         </div>
         <div class="info-item">
           <div class="info-label">Sipariş Durumu</div>
           <div class="info-value">
             ${order.status === 'pending' ? 'Beklemede' :
-              order.status === 'confirmed' ? 'Onaylandı' :
-              order.status === 'processing' ? 'Hazırlanıyor' :
-              order.status === 'shipped' ? 'Kargoya Verildi' :
-              order.status === 'delivered' ? 'Teslim Edildi' :
+      order.status === 'confirmed' ? 'Onaylandı' :
+        order.status === 'processing' ? 'Hazırlanıyor' :
+          order.status === 'shipped' ? 'Kargoya Verildi' :
+            order.status === 'delivered' ? 'Teslim Edildi' :
               order.status === 'cancelled' ? 'İptal Edildi' :
-              order.status || '-'}
+                order.status || '-'}
           </div>
         </div>
       </div>

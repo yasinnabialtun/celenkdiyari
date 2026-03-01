@@ -1,0 +1,19 @@
+name = "celenkdiyari"
+type = "javascript"
+account_id = ""
+workers_dev = true
+
+[build]
+command = "npm run build"
+
+[build.upload]
+format = "modules"
+main = ".vercel/output/functions"
+
+[site]
+bucket = ".vercel/output/static"
+
+compatibility_date = "2024-01-01"
+
+[env.production]
+name = "celenkdiyari-prod"

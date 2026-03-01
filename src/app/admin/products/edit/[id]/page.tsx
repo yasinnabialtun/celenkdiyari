@@ -1,6 +1,6 @@
 'use client';
 
-export const runtime = 'nodejs';
+export const runtime = 'edge';
 
 import { useState, useEffect } from 'react';
 import ProductForm from '@/components/admin/ProductForm';
